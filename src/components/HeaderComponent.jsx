@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import image from "../images/Digiratina.png";
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -11,9 +12,10 @@ class HeaderComponent extends Component {
     return (
       <div>
         <header>
-          <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+          <nav style={{ backgroundColor: "white" }} dark expand="md">
             <div>
-              <a className="navbar-brand">Digiratina Employee Management</a>
+              <img src={image} width={100} height={80} />
+              <a className="navbar-brand">Employee Management</a>
             </div>
           </nav>
         </header>

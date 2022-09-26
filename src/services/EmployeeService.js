@@ -18,6 +18,10 @@ class EmployeeService {
   updateEmployee(employee, eid) {
     return axios.put(EMPLOYEE_URL + "/" + eid, employee);
   }
+
+  deleteEmployee(eid) {
+    return axios.delete(EMPLOYEE_URL + "/" + eid);
+  }
 }
 
 export default new EmployeeService();

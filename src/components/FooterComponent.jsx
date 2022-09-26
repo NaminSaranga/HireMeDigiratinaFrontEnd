@@ -10,7 +10,12 @@ class FooterComponent extends Component {
   render() {
     return (
       <div>
-        <footer className="footer">
+        <footer
+          className="footer"
+          style={{ backgroundColor: "#1B4F72", padding: "1em 0em" }}
+          dark
+          expand="md"
+        >
           <span className="text-muted">
             All Rights Reserved 2022 @Digiratina
           </span>

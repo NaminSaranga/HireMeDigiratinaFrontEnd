@@ -78,7 +78,7 @@ class CreateUpdateEmployeeComponent extends Component {
   }
 
   formTitle() {
-    if (this.state.id == -1) {
+    if (this.state.id === "add") {
       return <h3 className="text-center">Add Digiratina Employee</h3>;
     } else {
       return <h3 className="text-center">Update Digiratina Employee</h3>;
@@ -87,7 +87,11 @@ class CreateUpdateEmployeeComponent extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          padding: "1em 0em",
+        }}
+      >
         <div className="container">
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
@@ -136,19 +140,25 @@ class CreateUpdateEmployeeComponent extends Component {
                     />
                   </div>
 
-                  <button
-                    className="btn btn-success"
-                    onClick={this.saveOrUpdateEmployee}
+                  <div
+                    style={{
+                      padding: "1em 0em",
+                    }}
                   >
-                    Save
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={this.cancel.bind(this)}
-                    style={{ marginLeft: "10px" }}
-                  >
-                    Cancel
-                  </button>
+                    <button
+                      className="btn btn-success"
+                      onClick={this.saveOrUpdateEmployee}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={this.cancel.bind(this)}
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>

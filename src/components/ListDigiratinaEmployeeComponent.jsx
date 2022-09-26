@@ -10,6 +10,7 @@ class ListDigiratinaEmployeeComponent extends Component {
     };
     this.addEmployee = this.addEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
+    this.deleteEmployee = this.deleteEmployee.bind(this);
   }
 
   componentDidMount() {
@@ -26,17 +27,40 @@ class ListDigiratinaEmployeeComponent extends Component {
     this.props.history.push(`add-employee/${id}`);
   }
 
+  deleteEmployee(id) {
+    EmployeeService.deleteEmployee(id).then((res) => {
+      this.setState({
+        employees: this.state.employees.filter(
+          (employee) => employee.id !== id
+        ),
+      });
+    });
+  }
+
   render() {
     return (
       <div>
-        <h2 className="text-center">Digiratina Employees List</h2>
-        <div>
+        <div
+          style={{
+            padding: "1em 0em",
+          }}
+        >
+          <h2 className="text-center">Digiratina Employees List</h2>
+        </div>
+        <div
+          style={{
+            padding: "1em 0em",
+          }}
+        >
           <button className="btn btn-success" onClick={this.addEmployee}>
             Add New Employee
           </button>
         </div>
         <div className="row">
-          <table className="table table-striped table-bordered">
+          <table
+            className="table table-striped table-bordered"
+            style={{ border: "1px solid black", borderRadius: "5px!important" }}
+          >
             <thead>
               <tr>
                 <th>First Name</th>
@@ -56,10 +80,19 @@ class ListDigiratinaEmployeeComponent extends Component {
                   <td>{employee.designation}</td>
                   <td>
                     <button
+                      style={{ marginLeft: "10px" }}
                       onClick={() => this.editEmployee(employee.id)}
-                      className="btn btn-info"
+                      className="btn btn-primary"
                     >
                       Update
+                    </button>
+
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.deleteEmployee(employee.id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>
