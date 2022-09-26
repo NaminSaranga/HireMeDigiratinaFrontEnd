@@ -6,6 +6,14 @@ class EmployeeService {
   getEmployees() {
     return axios.get(EMPLOYEE_URL);
   }
+
+  createEmployee(employee) {
+    return axios.post(EMPLOYEE_URL, employee);
+  }
+
+  getEmployeeByid(eid) {
+    return axios.get(EMPLOYEE_URL + "/" + eid);
+  }
 }
 
 export default new EmployeeService();

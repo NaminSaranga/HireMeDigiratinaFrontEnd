@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import EmployeeService from "../services/EmployeeService";
 
-class CreateEmployeeComponent extends Component {
+class UpdateEmployeeComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      //   id: this.props.match.params.id,
+      id: this.props.match.params.id,
       firstName: "",
       lastName: "",
       email: "",
@@ -17,7 +17,19 @@ class CreateEmployeeComponent extends Component {
     this.LastNameHandler = this.LastNameHandler.bind(this);
     this.EmailHandler = this.EmailHandler.bind(this);
     this.DesignationHandler = this.DesignationHandler.bind(this);
-    this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
+    this.UpdateEmployee = this.UpdateEmployee.bind(this);
+  }
+
+  componentDidMount() {
+    EmployeeService.getEmployeeByid(this.state.id).then((res) => {
+      let employee = res.data;
+      this.setState({
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        email: employee.email,
+        designation: employee.designation,
+      });
+    });
   }
 
   FirstNameHandler = (event) => {
@@ -36,7 +48,7 @@ class CreateEmployeeComponent extends Component {
     this.setState({ designation: event.target.value });
   };
 
-  saveOrUpdateEmployee = (e) => {
+  UpdateEmployee = (e) => {
     e.preventDefault();
     let employee = {
       firstName: this.state.firstName,
@@ -45,15 +57,6 @@ class CreateEmployeeComponent extends Component {
       designation: this.state.designation,
     };
     console.log("employee => " + JSON.stringify(employee));
-
-    // if (this.state.id === "_add") {
-    EmployeeService.createEmployee(employee).then((res) => {
-      this.props.history.push("/employees");
-    });
-    // } else {
-    //   EmployeeService.updateEmployee(employee, this.state.id).then((res) => {
-    //     this.props.history.push("/employees");
-    //   });
   };
 
   cancel() {
@@ -66,7 +69,7 @@ class CreateEmployeeComponent extends Component {
         <div className="container">
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
-              {/* {this.getTitle()} */}
+              <h3 className="text-center">Update Employee</h3>
               <div className="card-body">
                 <form>
                   <div className="form-group">
@@ -113,7 +116,7 @@ class CreateEmployeeComponent extends Component {
 
                   <button
                     className="btn btn-success"
-                    onClick={this.saveOrUpdateEmployee}
+                    onClick={this.UpdateEmployee}
                   >
                     Save
                   </button>
@@ -134,4 +137,4 @@ class CreateEmployeeComponent extends Component {
   }
 }
 
-export default CreateEmployeeComponent;
+export default UpdateEmployeeComponent;

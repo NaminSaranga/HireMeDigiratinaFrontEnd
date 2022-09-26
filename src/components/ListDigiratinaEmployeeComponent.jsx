@@ -9,6 +9,7 @@ class ListDigiratinaEmployeeComponent extends Component {
       employees: [],
     };
     this.addEmployee = this.addEmployee.bind(this);
+    this.editEmployee = this.editEmployee.bind(this);
   }
 
   componentDidMount() {
@@ -18,14 +19,18 @@ class ListDigiratinaEmployeeComponent extends Component {
   }
 
   addEmployee() {
-    this.props.history.push("/add");
+    this.props.history.push("/add-employee");
+  }
+
+  editEmployee(id) {
+    this.props.history.push(`update-employee/${id}`);
   }
 
   render() {
     return (
       <div>
         <h2 className="text-center">Digiratina Employees List</h2>
-        <div className="row">
+        <div>
           <button className="btn btn-success" onClick={this.addEmployee}>
             Add New Employee
           </button>
@@ -49,6 +54,14 @@ class ListDigiratinaEmployeeComponent extends Component {
                   <td>{employee.lastName}</td>
                   <td>{employee.email}</td>
                   <td>{employee.designation}</td>
+                  <td>
+                    <button
+                      onClick={() => this.editEmployee(employee.id)}
+                      className="btn btn-info"
+                    >
+                      Update
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -5,6 +5,7 @@ import ListDigiratinaEmployeeComponent from "./components/ListDigiratinaEmployee
 import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
 import CreateEmployeeComponent from "./components/CreateEmployeeComponent";
+import UpdateEmployeeComponent from "./components/UpdateEmployeeComponent";
 
 function App() {
   return (
@@ -24,7 +25,15 @@ function App() {
               component={ListDigiratinaEmployeeComponent}
             ></Route>
 
-            <Route path="/add" component={CreateEmployeeComponent}></Route>
+            <Route
+              path="/add-employee"
+              component={CreateEmployeeComponent}
+            ></Route>
+
+            <Route
+              path="/update-employee/:id"
+              component={UpdateEmployeeComponent}
+            ></Route>
           </Switch>
         </div>
         <FooterComponent />
