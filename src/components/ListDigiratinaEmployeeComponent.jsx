@@ -19,11 +19,11 @@ class ListDigiratinaEmployeeComponent extends Component {
   }
 
   addEmployee() {
-    this.props.history.push("/add-employee");
+    this.props.history.push("/add-employee/add");
   }
 
   editEmployee(id) {
-    this.props.history.push(`update-employee/${id}`);
+    this.props.history.push(`add-employee/${id}`);
   }
 
   render() {

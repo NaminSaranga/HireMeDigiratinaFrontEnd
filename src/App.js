@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ListDigiratinaEmployeeComponent from "./components/ListDigiratinaEmployeeComponent";
 import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
-import CreateEmployeeComponent from "./components/CreateEmployeeComponent";
-import UpdateEmployeeComponent from "./components/UpdateEmployeeComponent";
+import CreateEmployeeComponent from "./components/CreateUpdateEmployeeComponent";
 
 function App() {
   return (
@@ -26,13 +25,8 @@ function App() {
             ></Route>
 
             <Route
-              path="/add-employee"
+              path="/add-employee/:id"
               component={CreateEmployeeComponent}
-            ></Route>
-
-            <Route
-              path="/update-employee/:id"
-              component={UpdateEmployeeComponent}
             ></Route>
           </Switch>
         </div>

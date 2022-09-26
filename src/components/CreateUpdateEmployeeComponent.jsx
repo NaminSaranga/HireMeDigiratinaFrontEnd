@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import EmployeeService from "../services/EmployeeService";
 
-class CreateEmployeeComponent extends Component {
+class CreateUpdateEmployeeComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      //   id: this.props.match.params.id,
+      id: this.props.match.params.id,
       firstName: "",
       lastName: "",
       email: "",
@@ -36,6 +36,22 @@ class CreateEmployeeComponent extends Component {
     this.setState({ designation: event.target.value });
   };
 
+  componentDidMount() {
+    if (this.state.id === "add") {
+      return;
+    } else {
+      EmployeeService.getEmployeeByid(this.state.id).then((res) => {
+        let employee = res.data;
+        this.setState({
+          firstName: employee.firstName,
+          lastName: employee.lastName,
+          email: employee.email,
+          designation: employee.designation,
+        });
+      });
+    }
+  }
+
   saveOrUpdateEmployee = (e) => {
     e.preventDefault();
     let employee = {
@@ -46,18 +62,27 @@ class CreateEmployeeComponent extends Component {
     };
     console.log("employee => " + JSON.stringify(employee));
 
-    // if (this.state.id === "_add") {
-    EmployeeService.createEmployee(employee).then((res) => {
-      this.props.history.push("/employees");
-    });
-    // } else {
-    //   EmployeeService.updateEmployee(employee, this.state.id).then((res) => {
-    //     this.props.history.push("/employees");
-    //   });
+    if (this.state.id === "add") {
+      EmployeeService.createEmployee(employee).then((res) => {
+        this.props.history.push("/employees");
+      });
+    } else {
+      EmployeeService.updateEmployee(employee, this.state.id).then((res) => {
+        this.props.history.push("/employees");
+      });
+    }
   };
 
   cancel() {
     this.props.history.push("/employees");
+  }
+
+  formTitle() {
+    if (this.state.id == -1) {
+      return <h3 className="text-center">Add Digiratina Employee</h3>;
+    } else {
+      return <h3 className="text-center">Update Digiratina Employee</h3>;
+    }
   }
 
   render() {
@@ -66,7 +91,7 @@ class CreateEmployeeComponent extends Component {
         <div className="container">
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
-              {/* {this.getTitle()} */}
+              {this.formTitle()}
               <div className="card-body">
                 <form>
                   <div className="form-group">
@@ -134,4 +159,4 @@ class CreateEmployeeComponent extends Component {
   }
 }
 
-export default CreateEmployeeComponent;
+export default CreateUpdateEmployeeComponent;
