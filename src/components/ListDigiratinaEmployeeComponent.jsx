@@ -8,6 +8,7 @@ class ListDigiratinaEmployeeComponent extends Component {
     this.state = {
       employees: [],
     };
+    this.addEmployee = this.addEmployee.bind(this);
   }
 
   componentDidMount() {
@@ -16,10 +17,19 @@ class ListDigiratinaEmployeeComponent extends Component {
     });
   }
 
+  addEmployee() {
+    this.props.history.push("/add");
+  }
+
   render() {
     return (
       <div>
         <h2 className="text-center">Digiratina Employees List</h2>
+        <div className="row">
+          <button className="btn btn-success" onClick={this.addEmployee}>
+            Add New Employee
+          </button>
+        </div>
         <div className="row">
           <table className="table table-striped table-bordered">
             <thead>

@@ -4,26 +4,30 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ListDigiratinaEmployeeComponent from "./components/ListDigiratinaEmployeeComponent";
 import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
+import CreateEmployeeComponent from "./components/CreateEmployeeComponent";
 
 function App() {
   return (
     <div>
       <Router>
-          <HeaderComponent />
-          <div className="container">
-            <Switch>
-              <Route
-                path="/"
-                component={ListDigiratinaEmployeeComponent}
-              ></Route>
+        <HeaderComponent />
+        <div className="container">
+          <Switch>
+            <Route
+              path="/"
+              exact
+              component={ListDigiratinaEmployeeComponent}
+            ></Route>
 
-              <Route
-                path="/employees"
-                component={ListDigiratinaEmployeeComponent}
-              ></Route>
-            </Switch>
-          </div>
-          <FooterComponent />
+            <Route
+              path="/employees"
+              component={ListDigiratinaEmployeeComponent}
+            ></Route>
+
+            <Route path="/add" component={CreateEmployeeComponent}></Route>
+          </Switch>
+        </div>
+        <FooterComponent />
       </Router>
     </div>
   );
