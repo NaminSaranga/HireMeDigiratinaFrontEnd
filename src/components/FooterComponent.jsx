@@ -12,11 +12,14 @@ class FooterComponent extends Component {
       <div>
         <footer
           className="footer"
-          style={{ backgroundColor: "#1B4F72", padding: "1em 0em" }}
+          style={{
+            backgroundColor: "#1B4F72",
+            padding: "1em 0em",
+          }}
           dark
           expand="md"
         >
-          <span className="text-muted">
+          <span style={{ color: "white" }}>
             All Rights Reserved 2022 @Digiratina
           </span>
         </footer>

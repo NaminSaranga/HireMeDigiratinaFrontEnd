@@ -15,7 +15,12 @@ class HeaderComponent extends Component {
           <nav style={{ backgroundColor: "white" }} dark expand="md">
             <div>
               <img src={image} width={100} height={80} />
-              <a className="navbar-brand">Employee Management</a>
+              <a
+                className="navbar-brand"
+                style={{ fontWeight: "bold", marginLeft: "10px" }}
+              >
+                Employee Management
+              </a>
             </div>
           </nav>
         </header>

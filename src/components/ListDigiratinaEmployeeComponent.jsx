@@ -24,7 +24,7 @@ class ListDigiratinaEmployeeComponent extends Component {
   }
 
   editEmployee(id) {
-    this.props.history.push(`add-employee/${id}`);
+    this.props.history.push(`/add-employee/${id}`);
   }
 
   deleteEmployee(id) {
@@ -35,6 +35,10 @@ class ListDigiratinaEmployeeComponent extends Component {
         ),
       });
     });
+  }
+
+  viewEmployee(id) {
+    this.props.history.push(`/view/${id}`);
   }
 
   render() {
@@ -93,6 +97,14 @@ class ListDigiratinaEmployeeComponent extends Component {
                       className="btn btn-danger"
                     >
                       Delete
+                    </button>
+
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.viewEmployee(employee.id)}
+                      className="btn btn-dark"
+                    >
+                      View
                     </button>
                   </td>
                 </tr>
